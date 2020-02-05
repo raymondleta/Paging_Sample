@@ -2,10 +2,15 @@ package com.tosh.pagingsample.data.vo
 
 data class MovieDetails(
     val adult: Boolean,
+    val backdrop_path: String,
+    val belongs_to_collection: BelongsToCollection,
+    val budget: Int,
     val genres: List<Genre>,
     val homepage: String,
     val id: Int,
     val imdb_id: String,
+    val original_language: String,
+    val original_title: String,
     val overview: String,
     val popularity: Double,
     val poster_path: String,
@@ -20,7 +25,15 @@ data class MovieDetails(
     val vote_count: Int
 )
 
+data class BelongsToCollection(
+    val backdrop_path: String,
+    val id: Int,
+    val name: String,
+    val poster_path: String
+)
+
 data class Genre(
     val id: Int,
     val name: String
 )
+

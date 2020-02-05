@@ -7,6 +7,6 @@ import retrofit2.http.Path
 
 interface MovieApiInterface {
 
-    @GET("movie/{moviee_id}")
+    @GET("movie/{movie_id}")
     fun getMovieDetails(@Path("movie_id") id: Int): Single<MovieDetails>
 }
