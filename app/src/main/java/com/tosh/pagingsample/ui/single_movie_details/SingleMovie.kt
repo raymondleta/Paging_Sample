@@ -1,4 +1,4 @@
-package com.tosh.pagingsample.ui
+package com.tosh.pagingsample.ui.single_movie_details
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,8 +15,6 @@ import com.tosh.pagingsample.data.api.MovieDbClient
 import com.tosh.pagingsample.data.api.POSTER_URL
 import com.tosh.pagingsample.data.repository.NetworkState
 import com.tosh.pagingsample.data.vo.MovieDetails
-import com.tosh.pagingsample.single_movie_details.MovieDetailsRepository
-import com.tosh.pagingsample.single_movie_details.SingleMovieViewModel
 import kotlinx.android.synthetic.main.activity_single_movie.*
 import java.text.NumberFormat
 import java.util.*

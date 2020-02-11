@@ -1,4 +1,4 @@
-package com.tosh.pagingsample.single_movie_details
+package com.tosh.pagingsample.ui.single_movie_details
 
 import androidx.lifecycle.LiveData
 import com.tosh.pagingsample.data.api.MovieApiInterface

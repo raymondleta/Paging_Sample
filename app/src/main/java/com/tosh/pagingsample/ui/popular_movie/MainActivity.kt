@@ -1,4 +1,4 @@
-package com.tosh.pagingsample.ui
+package com.tosh.pagingsample.ui.popular_movie
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

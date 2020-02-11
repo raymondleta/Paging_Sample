@@ -17,11 +17,10 @@ class MovieDataSource(private val apiService: MovieApiInterface, private val dis
     private val page = FIRST_PAGE
     val networkState: MutableLiveData<NetworkState> = MutableLiveData()
 
-    override fun loadInitial(
-        params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, Movie>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Movie>) {
         networkState.value = NetworkState.LOADING
 
+        disposable.add(
         apiService.getPopularMovies(page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -35,10 +34,29 @@ class MovieDataSource(private val apiService: MovieApiInterface, private val dis
                     Log.e("MovieDataSource", "")
                 }
             )
+        )
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
-
+        disposable.add(
+            apiService.getPopularMovies(params.key)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        if (it.total_pages >= params.key){
+                            callback.onResult(it.results, params.key+1)
+                            networkState.value = NetworkState.LOADED
+                        }else{
+                            networkState.value = NetworkState.ENDOFLIST
+                        }
+                    },
+                    {
+                        networkState.value = NetworkState.FAILED
+                        Log.e("MovieDataSource", "")
+                    }
+                )
+        )
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
